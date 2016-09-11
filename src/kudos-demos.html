@@ -19,6 +19,42 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         padding: 10px;
       }
+      
+      .paper-header {
+        height: 60px;
+        font-size: 16px;
+        line-height: 60px;
+        padding: 0 10px;
+        color: white;
+        transition: height 0.2s;
+        background-color: blue !important;
+      }
+      paper-card {
+        width: 100%;
+        margin:10px;
+      }
+      paper-card.rate { 
+        @apply(--layout-horizontal); 
+      }
+      .rate-content {
+        width: 100%;
+        @apply(--layout-flex);
+        float: left;
+      }
+      .rate-header { @apply(--paper-font-headline); }
+      .rate-name { color: var(--paper-grey-600); margin: 10px 0; }
+      paper-icon-button.rate-icon {
+        --iron-icon-fill-color: white;
+        --iron-icon-stroke-color: var(--paper-grey-600);
+        cursor: pointer;
+      }
+      paper-icon-button.rate-icon:hover{
+        background-color: yellow !important;
+        color: blue;
+      }
+      paper-icon-button.rate-ico[active]{
+        background-color: yellow !important;
+      }
     </style>
 
     <div class="card">
