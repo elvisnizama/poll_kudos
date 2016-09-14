@@ -1,0 +1,110 @@
+<link rel="import" href="kudos-login.html">
+<dom-module id="kudos-collection">
+  <style include="shared-styles">
+    :host {
+      display: block;
+
+      padding: 2px;
+    }
+    
+    .paper-header {
+      height: 60px;
+      font-size: 16px;
+      line-height: 60px;
+      padding: 0 10px;
+      color: white;
+      transition: height 0.2s;
+      background-color: blue !important;
+    }
+    paper-card {
+      width: 100%;
+      margin:5px;
+    }
+    paper-card.rate { 
+      @apply(--layout-horizontal); 
+    }
+    .rate-content {
+      width: 100%;
+      @apply(--layout-flex);
+      float: left;
+    }
+    .rate-header { @apply(--paper-font-headline); }
+    .rate-name { color: var(--paper-grey-600); margin: 10px 0; }
+    paper-icon-button.rate-icon {
+      --iron-icon-fill-color: white;
+      --iron-icon-stroke-color: var(--paper-grey-600);
+      cursor: pointer;
+    }
+    paper-icon-button.rate-icon:hover{
+      background-color: yellow !important;
+      color: blue;
+    }
+    paper-icon-button.rate-ico[active]{
+    }
+  </style>
+  <template>
+    <p>Parrafo</p>
+    <kudos-login></kudos-login>
+    <firebase-collection location="https://devbbvapi1.firebaseio.com/projects" data="{{data}}"></firebase-collection>
+      <div role="listbox">
+      <template is="dom-repeat" items="{{data}}" as="project">
+          <paper-card class="rate">
+            <div class="rate-content">
+              <div class="card-content">
+                <div class="rate-header">@{{project.name}}</div>
+                <div class="rate-name">
+                  {{project.description}}
+                  <div class="team">Equipo: {{project.team}}</div>
+                </div>
+                <div>Califica a tu candidato</div>
+              </div>
+              <div class="card-actions centrar">
+                <template is="dom-repeat" items="{{project.kudos}}" as="ikudo">
+                    <p>{{ikudo.title}}</p>
+                  <!--<icon-toggle kudo="{{ikudo.__firebaseKey__}}" toggle-icon="{{ikudo.ico}}" nombre="{{ikudo.nombre}}" motivo="{{ikudo.motivo}}"  id-project={{project.id}} obj-kudos={{project.kudos}}></icon-toggle>-->
+                </template> 
+              </div>
+            </div>
+          </paper-card>
+      </template>
+    </div>  
+
+  </template>
+</dom-module>
+<script>
+  Polymer({
+    is: 'kudos-collection',
+    properties:{
+      _firebase:Object,
+      error:{
+        type: Object,
+        value:null,
+        notify:true
+      },
+      userName: {
+        type: String,
+        notify:true
+      },
+      userUid: {
+        type: String,
+        notify:true
+      },
+      userPhoto: {
+        type: String,
+        notify:true
+      },
+      user: {
+        type: Object,
+        notify:true
+      },
+      projects:{
+        type: Array,
+        notify:true
+      },
+    },
+    ready:function(){
+        console.info("entrando");
+    }
+  });
+</script>
+
